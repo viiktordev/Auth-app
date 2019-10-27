@@ -10,14 +10,14 @@ const body = {
   telefones: [{ ddd: '11', numero: '972820922' }],
 };
 
-describe('User sucesso', () => {
+describe('Sign-up sucesso', () => {
   beforeEach(() => {
     User.collection.drop();
   });
 
   it('deve ser possivel cadastrar um usuario e obter seu id', async () => {
     const response = await request(app)
-      .post('/sing-up')
+      .post('/sign-up')
       .send(body);
 
     expect(response.body).toHaveProperty('id');
@@ -25,17 +25,17 @@ describe('User sucesso', () => {
 
   it('deve ser possivel cadastrar um usuario e obter seu token jwt', async () => {
     const response = await request(app)
-      .post('/sing-up')
+      .post('/sign-up')
       .send(body);
 
     expect(response.body).toHaveProperty('token');
   });
 });
 
-describe('User falha', () => {
+describe('sign-up falha', () => {
   it('Deve retornar que o email ja existe', async () => {
     const response = await request(app)
-      .post('/sing-up')
+      .post('/sign-up')
       .send(body)
       .expect(400);
 
@@ -44,7 +44,7 @@ describe('User falha', () => {
 
   it('Deve retornar uma falha na validacao dos dados', async () => {
     const response = await request(app)
-      .post('/sing-up')
+      .post('/sign-up')
       .send({
         nome: 'victor',
         email: 'v2gmail.com',
