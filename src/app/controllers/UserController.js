@@ -1,6 +1,9 @@
 import * as yup from 'yup';
+import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
+
+import jwtConfig from '../../config/jwt';
 
 class UserController {
   async store(req, res) {
@@ -44,7 +47,13 @@ class UserController {
       ultimo_login: Date.now(),
     });
 
-    user = user.toJson();
+    const { _id: id } = user;
+
+    const token = jwt.sign({ id }, jwtConfig.secret, {
+      expiresIn: jwtConfig.expiresIn,
+    });
+
+    user = user.toJson(token);
 
     return res.json(user);
   }

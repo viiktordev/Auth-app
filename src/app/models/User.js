@@ -36,7 +36,7 @@ UserSchema.pre('save', async function(next) {
   next();
 });
 
-UserSchema.methods.toJson = function() {
+UserSchema.methods.toJson = function(token) {
   const user = this.toObject();
 
   user.id = user._id;
@@ -54,6 +54,8 @@ UserSchema.methods.toJson = function() {
   });
 
   delete user.senha;
+
+  user.token = token;
 
   return user;
 };
