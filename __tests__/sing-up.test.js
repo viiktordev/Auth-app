@@ -15,12 +15,20 @@ describe('User sucesso', () => {
     User.collection.drop();
   });
 
-  it('deve ser possivel cadastrar um usuario e obter um token', async () => {
+  it('deve ser possivel cadastrar um usuario e obter seu id', async () => {
     const response = await request(app)
       .post('/sing-up')
       .send(body);
 
     expect(response.body).toHaveProperty('id');
+  });
+
+  it('deve ser possivel cadastrar um usuario e obter seu token jwt', async () => {
+    const response = await request(app)
+      .post('/sing-up')
+      .send(body);
+
+    expect(response.body).toHaveProperty('token');
   });
 });
 
