@@ -7,12 +7,7 @@ const body = {
   nome: 'victor',
   email: 'v2@gmail.com',
   senha: '12345678',
-  telefones: [
-    {
-      ddd: '11',
-      numero: '972820922',
-    },
-  ],
+  telefones: [{ ddd: '11', numero: '972820922' }],
 };
 
 describe('User sucesso', () => {
@@ -25,7 +20,7 @@ describe('User sucesso', () => {
       .post('/sing-up')
       .send(body);
 
-    expect(response.body).toHaveProperty('_id');
+    expect(response.body).toHaveProperty('id');
   });
 });
 

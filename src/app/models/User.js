@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
 import { Schema, model } from 'mongoose';
 import bcrypt from 'bcryptjs';
@@ -34,5 +35,27 @@ UserSchema.pre('save', async function(next) {
   }
   next();
 });
+
+UserSchema.methods.toJson = function() {
+  const user = this.toObject();
+
+  user.id = user._id;
+  delete user._id;
+
+  user.data_criacao = user.createdAt;
+  delete user.createdAt;
+
+  user.data_atualizacao = user.updatedAt;
+  delete user.updatedAt;
+
+  user.telefones.map(telefone => {
+    delete telefone._id;
+    return telefone;
+  });
+
+  delete user.senha;
+
+  return user;
+};
 
 export default model('User', UserSchema);

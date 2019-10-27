@@ -10,13 +10,15 @@ class UserController {
       return res.status(400).json({ mensagem: 'E-mail já existe' });
     }
 
-    const user = await User.create({
+    let user = await User.create({
       nome,
       email,
       senha,
       telefones,
       ultimo_login: Date.now(),
     });
+
+    user = user.toJson();
 
     return res.json(user);
   }
