@@ -1,6 +1,12 @@
 import request from 'supertest';
 import app from '../src/app';
 
+import User from '../src/app/models/User';
+
+beforeEach(() => {
+  User.collection.drop();
+});
+
 describe('user', () => {
   it('deve ser possivel cadastrar um usuario e obter um token', async () => {
     const response = await request(app)
@@ -17,6 +23,6 @@ describe('user', () => {
         ],
       });
 
-    expect(response.body).toHaveProperty('id');
+    expect(response.body).toHaveProperty('_id');
   });
 });
