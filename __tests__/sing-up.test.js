@@ -33,4 +33,17 @@ describe('User falha', () => {
 
     expect(response.body).toHaveProperty('mensagem');
   });
+
+  it('Deve retornar uma falha na validacao dos dados', async () => {
+    const response = await request(app)
+      .post('/sing-up')
+      .send({
+        nome: 'victor',
+        email: 'v2gmail.com',
+        senha: '12345678',
+      })
+      .expect(400);
+
+    expect(response.body).toHaveProperty('mensagem');
+  });
 });
