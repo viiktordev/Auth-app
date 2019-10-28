@@ -11,8 +11,10 @@ const body = {
 };
 
 describe('Sign-up sucesso', () => {
-  beforeEach(() => {
-    User.collection.drop();
+  beforeEach(async () => {
+    if (await User.count({})) {
+      User.collection.drop();
+    }
   });
 
   it('deve ser possivel cadastrar um usuario e obter seu id', async () => {
