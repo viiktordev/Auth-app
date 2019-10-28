@@ -6,6 +6,16 @@ import User from '../models/User';
 import jwtConfig from '../../config/jwt';
 
 class UserController {
+  async show(req, res) {
+    const { userId: _id } = req;
+
+    let user = await User.findById({ _id });
+
+    user = user.toJson();
+
+    return res.json(user);
+  }
+
   async store(req, res) {
     const schema = yup.object().shape({
       nome: yup.string().required(),

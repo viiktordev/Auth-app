@@ -3,15 +3,15 @@ import Router from 'express';
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 
+import authMiddleware from './app/middlewares/auth';
+
 const routes = Router();
 
 routes.post('/sign-up', UserController.store);
 
 routes.post('/sign-in', SessionController.store);
 
-routes.get('/user', (req, res) => {
-  return res.json({ ok: true });
-});
+routes.get('/user', authMiddleware, UserController.show);
 
 routes.get('*', (req, res) => {
   res.status(404).json({ mensagem: 'Rota não encontrada' });

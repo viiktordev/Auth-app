@@ -1,8 +1,6 @@
 import request from 'supertest';
 import app from '../src/app';
 
-import User from '../src/app/models/User';
-
 const user = {
   nome: 'victor',
   email: 'v3@gmail.com',
@@ -11,7 +9,6 @@ const user = {
 };
 
 describe('User sucesso', () => {
-  afterEach();
   test('Deve retornar os dados do usuario', async () => {
     const response = await request(app)
       .post('/sign-up')
@@ -21,7 +18,7 @@ describe('User sucesso', () => {
 
     const respose2 = await request(app)
       .get('/user')
-      .set('Bearer', token)
+      .set('Authorization', `Bearer ${token}`)
       .expect(200);
 
     expect(respose2.body).toHaveProperty('id');
