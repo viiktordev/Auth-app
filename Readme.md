@@ -1,6 +1,3 @@
-## Aplicação de autenticação
-
-
 # Sobre o projeto
 
 > Este projeto consiste em uma API que controla o processo de autenticação em uma aplicação.
