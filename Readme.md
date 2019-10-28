@@ -1,12 +1,12 @@
-# Aplicação de autenticação
+## Aplicação de autenticação
 
-----
-## Sobre o projeto
+
+# Sobre o projeto
 
 > Este projeto consiste em uma API que controla o processo de autenticação em uma aplicação.
 
-----
-## Tecnologias e Bibliotecas
+
+# Tecnologias e Bibliotecas
 
 * [**Node.js**](https://nodejs.org/en/)
 * [**MongoDB**](https://www.mongodb.com/)
@@ -20,8 +20,7 @@
 * [**Dotenv**](https://www.npmjs.com/package/dotenv)
 
 
-----
-## Setup
+# Setup
 
 
 1. Instale o yarn:
@@ -40,12 +39,12 @@
 
         $ yarn start
 
-----
-## Endpints
+
+# Endpoints
 
 [**Utilize esse link para testar a aplicação**](https://auth-app-teste.herokuapp.com/)
 
-# **POST - /sign-up**
+## **POST - /sign-up**
 
 > Este endpoint faz a criação e autentica o usuário para o primeiro acesso.
 
@@ -67,12 +66,12 @@
 * **200 Ok** - Token Jwt
 * **400 Bad Request** - Consultar mensagem de erro.
 
-# **POST - /sign-in**
+## **POST - /sign-in**
 
 > Este autentica o usuário utilizando e-mail e senha.
 
 **Request body**
-```
+```json
 {
 	"email":"seuemail@valido.com",
 	"senha":"min8digitos"
@@ -86,12 +85,12 @@
 * **401 Not Authorized** - E-mail ou senha incorretos.
 
 
-# **GET - /users**
+## **GET - /users**
 
 > Este retorna as informações do usuário que o chamou.
 
 **Request body**
-```
+```json
 {
 	"email":"seuemail@valido.com",
 	"senha":"min8digitos"
