@@ -9,6 +9,10 @@ routes.post('/sign-up', UserController.store);
 
 routes.post('/sign-in', SessionController.store);
 
+routes.get('/user', (req, res) => {
+  return res.json({ ok: true });
+});
+
 routes.get('*', (req, res) => {
   res.status(404).json({ mensagem: 'Rota não encontrada' });
 });

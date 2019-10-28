@@ -5,7 +5,7 @@ import User from '../src/app/models/User';
 
 const body = {
   nome: 'victor',
-  email: 'v2@gmail.com',
+  email: 'v1@gmail.com',
   senha: '12345678',
   telefones: [{ ddd: '11', numero: '972820922' }],
 };
@@ -51,7 +51,7 @@ describe('sign-up falha', () => {
       .post('/sign-up')
       .send({
         nome: 'victor',
-        email: 'v2gmail.com',
+        email: 'v1gmail.com',
         senha: '12345678',
       })
       .expect(400);
