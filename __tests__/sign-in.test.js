@@ -24,3 +24,14 @@ describe('Sign-in sucesso', () => {
     expect(response.body).toHaveProperty('token');
   });
 });
+
+describe('Sign-in falha', () => {
+  test('Deve retornar uma falha na validacao dos dados', async () => {
+    const response = await request(app)
+      .post('/sign-in')
+      .send({ email: 'v3gmail.com', senha: user.senha })
+      .expect(400);
+
+    expect(response.body).toHaveProperty('mensagem');
+  });
+});

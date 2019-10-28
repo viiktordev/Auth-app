@@ -12,7 +12,7 @@ const body = {
 
 describe('Sign-up sucesso', () => {
   beforeEach(async () => {
-    if (await User.count({})) {
+    if (await User.countDocuments({})) {
       User.collection.drop();
     }
   });

@@ -1,3 +1,4 @@
+import * as yup from 'yup';
 import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
@@ -6,6 +7,20 @@ import jwtConfig from '../../config/jwt';
 
 class SessionController {
   async store(req, res) {
+    const schema = yup.object().shape({
+      email: yup
+        .string()
+        .email()
+        .required(),
+      senha: yup.string().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res
+        .status(400)
+        .json({ mensagem: 'Dados de autenticação inválidos' });
+    }
+
     const { email, senha } = req.body;
 
     let user = await User.findOne({ email });
