@@ -50,7 +50,7 @@
 > Este endpoint faz a criação e autentica o usuário para o primeiro acesso.
 
 **Request body**
-```
+```json
 {
 	"nome":"seu_nome",
 	"email":"seuemail@valido.com",
