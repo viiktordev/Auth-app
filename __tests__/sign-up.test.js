@@ -18,7 +18,8 @@ describe('Sign-up sucesso', () => {
   it('deve ser possivel cadastrar um usuario e obter seu id', async () => {
     const response = await request(app)
       .post('/sign-up')
-      .send(body);
+      .send(body)
+      .expect(200);
 
     expect(response.body).toHaveProperty('id');
   });
@@ -26,7 +27,8 @@ describe('Sign-up sucesso', () => {
   it('deve ser possivel cadastrar um usuario e obter seu token jwt', async () => {
     const response = await request(app)
       .post('/sign-up')
-      .send(body);
+      .send(body)
+      .expect(200);
 
     expect(response.body).toHaveProperty('token');
   });
