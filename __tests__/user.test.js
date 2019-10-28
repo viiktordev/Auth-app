@@ -24,3 +24,14 @@ describe('User sucesso', () => {
     expect(respose2.body).toHaveProperty('id');
   });
 });
+
+describe('User falha', () => {
+  test('Deve retornar nao autorizado sessao invalida', async () => {
+    const respose = await request(app)
+      .get('/user')
+      .set('Authorization', `Bearer `)
+      .expect(401);
+
+    expect(respose.body).toHaveProperty('mensagem');
+  });
+});
