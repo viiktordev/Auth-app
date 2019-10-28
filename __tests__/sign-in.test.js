@@ -34,4 +34,13 @@ describe('Sign-in falha', () => {
 
     expect(response.body).toHaveProperty('mensagem');
   });
+
+  test('Deve retornar não autorizado', async () => {
+    const response = await request(app)
+      .post('/sign-in')
+      .send({ email: 'v99@mail.com', senha: 'senhainvalida' })
+      .expect(401);
+
+    expect(response.body).toHaveProperty('mensagem');
+  });
 });
