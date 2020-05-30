@@ -48,12 +48,12 @@
 **Request body**
 ```json
 {
-	"nome":"seu_nome",
+	"name":"seu_nome",
 	"email":"seuemail@valido.com",
-	"senha":"min8digitos",
-	"telefones": [{
+	"password":"min8digitos",
+	"phone": [{
 		"ddd":"11",
-		"numero":"999999999"
+		"number":"999999999"
 	}]
 }
 ```

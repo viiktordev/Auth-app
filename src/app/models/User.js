@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 
 const UserSchema = new Schema(
   {
-    nome: {
+    name: {
       type: String,
       required: true,
     },
@@ -13,15 +13,15 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    senha: {
+    password: {
       type: String,
       required: true,
     },
-    ultimo_login: {
+    last_access: {
       type: Date,
       required: true,
     },
-    telefones: [{ ddd: String, numero: String }],
+    phones: [{ ddd: String, number: String }],
   },
   {
     timestamps: true,
@@ -30,38 +30,38 @@ const UserSchema = new Schema(
 );
 
 UserSchema.pre('save', async function(next) {
-  if (this.senha) {
-    this.senha = await bcrypt.hash(this.senha, 8);
+  if (this.password) {
+    this.password = await bcrypt.hash(this.password, 8);
   }
   next();
 });
 
-UserSchema.methods.checkPassword = function(senha) {
-  return bcrypt.compare(senha, this.senha);
+UserSchema.methods.checkPassword = function(password) {
+  return bcrypt.compare(password, this.password);
 };
 
-UserSchema.methods.toJson = function(token) {
-  const user = this.toObject();
+// UserSchema.methods.toJson = function(token) {
+//   const user = this.toObject();
 
-  user.id = user._id;
-  delete user._id;
+//   user.id = user._id;
+//   delete user._id;
 
-  user.data_criacao = user.createdAt;
-  delete user.createdAt;
+//   user.data_criacao = user.createdAt;
+//   delete user.createdAt;
 
-  user.data_atualizacao = user.updatedAt;
-  delete user.updatedAt;
+//   user.data_atualizacao = user.updatedAt;
+//   delete user.updatedAt;
 
-  user.telefones.map(telefone => {
-    delete telefone._id;
-    return telefone;
-  });
+//   user.telefones.map(telefone => {
+//     delete telefone._id;
+//     return telefone;
+//   });
 
-  delete user.senha;
+//   delete user.senha;
 
-  user.token = token;
+//   user.token = token;
 
-  return user;
-};
+//   return user;
+// };
 
 export default model('User', UserSchema);

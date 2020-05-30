@@ -14,7 +14,11 @@ routes.post('/sign-in', SessionController.store);
 routes.get('/user', authMiddleware, UserController.show);
 
 routes.get('*', (req, res) => {
-  res.status(404).json({ mensagem: 'Rota não encontrada' });
+  res.status(404).json({ message: 'route not found' });
+});
+
+routes.post('*', (req, res) => {
+  res.status(404).json({ message: 'route not found' });
 });
 
 export default routes;
